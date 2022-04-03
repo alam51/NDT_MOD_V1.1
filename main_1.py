@@ -9,8 +9,8 @@ import utils
 
 if __name__ == '__main__':
     t1 = time.perf_counter()
-    path = r'F:\IMD\MOD\May\DOD'
-    days_of_month, files = utils.files_parser_from_folder(2021, 5, path)
+    path = r'G:\My Drive\Monthly_Report\2021\Nobvember\Zone total November-21'
+    days_of_month, files = utils.files_parser_from_folder(2021, 11, path)
 
     full_path_list = []
     for file in files:

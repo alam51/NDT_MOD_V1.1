@@ -65,9 +65,12 @@ class EwicDoD:
         }
         self.meter_diff_df = pd.DataFrame(data=meter_diff_dict, index=[self.date])
         for pos, val in enumerate(self.ghora_amps.iloc[:, 0]):
-            if self.ish_mw.iloc[pos, 0] > 0:
-                self.ghora_amps.iloc[pos, 0] *= -1
-                # ind.append(pos)
+            try:
+                if float(self.ish_mw.iloc[pos, 0]) > 0.0:
+                    self.ghora_amps.iloc[pos, 0] *= -1
+                    # ind.append(pos)
+            except:
+                print(f'Error in ish_mw on {self.date}')
         # self.mw_dict = {'Ghora_A': self.ghor
 
         self.mw_df = pd.concat([self.times, self.ghora_amps, self.ish_mw, self.ashu_mw, self.siraj_mw], axis=1)

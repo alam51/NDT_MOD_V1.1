@@ -10,8 +10,8 @@ import pandas as pd
 
 if __name__ == '__main__':
     t1 = time.perf_counter()
-    path = r'F:\IMD\MOD\April\ZT'
-    days_of_month, files = mod.files_parser_from_folder(2021, 4, path)
+    path = r'G:\My Drive\Monthly_Report\2022\January\ZT'
+    days_of_month, files = mod.files_parser_from_folder(2022, 1, path)
 
     full_path_list = []
     for file in files:
@@ -60,9 +60,12 @@ if __name__ == '__main__':
 
     meter_diff_df.loc['Min'] = min_meter_diff
     meter_diff_df.loc['Min Date'] = min_meter_diff_date
-    with ExcelWriter(path + '\\' + 'EWIC Readings Summary.xlsx') as writer:
+    output_excel_path = path + '\\' + 'EWIC Readings Summary.xlsx'
+    with ExcelWriter(output_excel_path) as writer:
         mw_df.to_excel(writer, sheet_name='MW')
         meter_diff_df.to_excel(writer, sheet_name='Energy Meter Diff')
     print(f'Number of cores of CPU Available = {mp.cpu_count()}')
     print(f'Number of cores of CPU Used = {cpu_nos}')
     print(f'Time elapsed: {time.perf_counter()}s')
+    print(f'Report saved at: {output_excel_path}')
+
